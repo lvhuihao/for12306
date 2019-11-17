@@ -75,10 +75,17 @@ def getTrains(fromStation,toStation,date):
         trains.append(eachTrain)
     return trains
 
-def arrangeTrains():
-    firstTrains = getTrains("虎门", "广州", "2019-11-17")
-    secondTrains = getTrains("广州", "容桂", "2019-11-17")
-    print("虎门"+"\t"+"广州"+"\t\t"+"广州"+"\t"+"南头")
+def arrangeTrains(cite_a,cite_b,city_c,date):
+    """
+    :param cite_a: the city you are from
+    :param cite_b: the city you transfer
+    :param city_c: the city you intend go to
+    :param date: the date you go
+    :return:
+    """
+    firstTrains = getTrains(cite_a, cite_b, date)
+    secondTrains = getTrains(cite_b, city_c, date)
+    print(cite_a+"\t"+cite_b+"\t\t"+cite_b+"\t"+city_c)
     allTrains=[]
     for index in range(len(firstTrains)):
         temp=(1,index,firstTrains[index]["arrive_time"])
@@ -97,4 +104,6 @@ def arrangeTrains():
             arriveTime=secondTrains[item[1]]["arrive_time"]
             print("\t\t\t\t"+startTime+"\t"+arriveTime)
 
-arrangeTrains()
+
+if __name__ == '__main__':
+    arrangeTrains("广州","北京","西安","2019-11-29")
